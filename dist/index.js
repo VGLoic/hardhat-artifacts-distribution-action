@@ -24743,15 +24743,19 @@ const wait_1 = __nccwpck_require__(5259);
  */
 async function run() {
     try {
-        const ms = core.getInput('milliseconds');
+        const releaseName = core.getInput('releaseName');
+        if (!releaseName)
+            throw new Error('No release name provided');
         // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-        core.debug(`Waiting ${ms} milliseconds ...`);
+        core.debug(`Preparing release ${releaseName}...`);
         // Log the current timestamp, wait, then log the new timestamp
         core.debug(new Date().toTimeString());
-        await (0, wait_1.wait)(parseInt(ms, 10));
+        core.info('Waiting for 1 second...');
+        await (0, wait_1.wait)(1_000);
+        core.info('Done waiting.');
         core.debug(new Date().toTimeString());
         // Set outputs for other workflow steps to use
-        core.setOutput('time', new Date().toTimeString());
+        core.setOutput('hasDistributed', true);
     }
     catch (error) {
         // Fail the workflow run if an error occurs
