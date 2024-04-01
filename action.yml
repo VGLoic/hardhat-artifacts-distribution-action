@@ -1,23 +1,25 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Hardhat artifacts distribution action'
+description:
+  'Distribute the compilation artifacts of your Hardhat project to a target
+  destination.'
+author: 'VGLoic'
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: 'heart'
-  color: 'red'
+  icon: 'upload-cloud'
+  color: 'blue'
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  releaseName:
+    description: 'Name of the release for the artifacts.'
     required: true
-    default: '1000'
+    default: 'latest'
 
 # Define your outputs here.
 outputs:
-  time:
-    description: 'Your output description here'
+  hasDistributed:
+    description: 'True if the artifacts have been distributed, false otherwise.'
 
 runs:
   using: node20
